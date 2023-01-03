@@ -38,3 +38,5 @@ logger:
 #      show_in_sidebar: true
 #      filename: Tent.yaml
 
+shell_command:
+  pushupdates_to_github: /bin/bash pushupdates.sh
