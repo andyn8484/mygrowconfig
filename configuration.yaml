@@ -1,0 +1,40 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+
+homeassistant:
+  media_dirs:
+    snapshots: /config/www/images/
+  allowlist_external_dirs:
+    - /config/www/images
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+
+logger:
+  default: info
+
+#lovelace:
+#  mode: storage
+#  dashboards:
+#    lovelace-yaml:
+#      mode: yaml
+#      title: Tent
+#      icon: mdi:script
+#      show_in_sidebar: true
+#      filename: Tent.yaml
+

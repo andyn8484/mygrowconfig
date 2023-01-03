@@ -1,0 +1,638 @@
+- id: '1668550038910'
+  alias: Blink Auto Picture Amnesia
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /30
+  condition:
+  - condition: time
+    before: '20:00:00'
+    after: 08:00:00
+  action:
+  - service: script.trigger_camera_amnesia
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_amnesia
+      filename: /config/www/images/Amnesia/blink_amnesia_{{now().year}}-{{now().month}}-{{now().day}}_{{now().hour}}.{{now().minute}}.jpg
+  mode: single
+- id: '1668619171554'
+  alias: Blink Auto Picture Bubblegum
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /30
+  condition:
+  - condition: time
+    before: '20:00:00'
+    after: 08:00:00
+  action:
+  - service: script.trigger_camera_bubblegum
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_bubblegum
+      filename: /config/www/images/Bubblegum/blink_bubblegum_{{now().year}}-{{now().month}}-{{now().day}}_{{now().hour}}.{{now().minute}}.jpg
+  mode: single
+- id: '1668619260737'
+  alias: Blink Auto Picture Top
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /30
+  condition:
+  - condition: time
+    before: '20:00:00'
+    after: 08:00:00
+  action:
+  - service: script.trigger_camera_top
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_top
+      filename: /config/www/images/Top/blink_top_{{now().year}}-{{now().month}}-{{now().day}}_{{now().hour}}.{{now().minute}}.jpg
+  mode: single
+- id: '1668619368845'
+  alias: Blink Auto Picture Both
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /30
+  condition:
+  - condition: time
+    before: '20:00:00'
+    after: 08:00:00
+  action:
+  - service: script.trigger_camera_both
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_room
+      filename: /config/www/images/Both/blink_both_{{now().year}}-{{now().month}}-{{now().day}}_{{now().hour}}.{{now().minute}}.jpg.jpg
+  mode: single
+- id: '1669147035095'
+  alias: Seedling Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Seedling
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 75
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 65
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 200
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 300
+    target:
+      entity_id: input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.seedling
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.early_vegetative
+      - input_boolean.flower
+      - input_boolean.flush
+      - input_boolean.transition
+      - input_boolean.vegetative
+  - service: input_number.set_value
+    data:
+      value: 2
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.liquid_weight
+      - input_number.massive_bloom
+      - input_number.rezin
+  - service: input_number.set_value
+    data:
+      value: 4
+    target:
+      entity_id: input_number.vitathrive
+  mode: single
+- id: '1669147077826'
+  alias: Vegetative Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Vegetative
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 70
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 55
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 600
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 600
+    target:
+      entity_id: input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.vegetative
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.early_vegetative
+      - input_boolean.flower
+      - input_boolean.flush
+      - input_boolean.seedling
+      - input_boolean.transition
+  - service: input_number.set_value
+    data:
+      value: 8
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+      - input_number.vitathrive
+      - input_number.rezin
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.massive_bloom
+      - input_number.liquid_weight
+  mode: single
+- id: '1669147418259'
+  alias: Flower Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Flower
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 70
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 45
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 900
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 1000
+    target:
+      entity_id: input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.flower
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.early_vegetative
+      - input_boolean.flush
+      - input_boolean.seedling
+      - input_boolean.vegetative
+      - input_boolean.transition
+  - service: input_number.set_value
+    data:
+      value: 6
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+      - input_number.liquid_weight
+  - service: input_number.set_value
+    data:
+      value: 8
+    target:
+      entity_id:
+      - input_number.vitathrive
+      - input_number.rezin
+  - service: input_number.set_value
+    data:
+      value: 20
+    target:
+      entity_id: input_number.massive_bloom
+  mode: single
+- id: '1669215451850'
+  alias: Early Vegetative Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Early Vegetative
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 70
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 55
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 500
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 400
+    target:
+      entity_id:
+      - input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.early_vegetative
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.flower
+      - input_boolean.flush
+      - input_boolean.seedling
+      - input_boolean.transition
+      - input_boolean.vegetative
+  - service: input_number.set_value
+    data:
+      value: 4
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+  - service: input_number.set_value
+    data:
+      value: 8
+    target:
+      entity_id: input_number.vitathrive
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.rezin
+      - input_number.massive_bloom
+      - input_number.liquid_weight
+  mode: single
+- id: '1669215552730'
+  alias: Transition Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Transition
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 70
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 45
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 800
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 600
+    target:
+      entity_id: input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.transition
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.early_vegetative
+      - input_boolean.flower
+      - input_boolean.flush
+      - input_boolean.seedling
+      - input_boolean.vegetative
+  - service: input_number.set_value
+    data:
+      value: 8
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+      - input_number.rezin
+  - service: input_number.set_value
+    data:
+      value: 6
+    target:
+      entity_id: input_number.liquid_weight
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.vitathrive
+      - input_number.massive_bloom
+  mode: single
+- id: '1669215909781'
+  alias: Flush Set Variables
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.growth_stage
+    to: Flush
+  condition: []
+  action:
+  - service: input_number.set_value
+    data:
+      value: 70
+    target:
+      entity_id: input_number.air_temperature_target
+  - service: input_number.set_value
+    data:
+      value: 45
+    target:
+      entity_id: input_number.humidity_target
+  - service: input_number.set_value
+    data:
+      value: 50
+    target:
+      entity_id: input_number.fertilization_target
+  - service: input_number.set_value
+    data:
+      value: 900
+    target:
+      entity_id: input_number.ppfd_target
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.flush
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.early_vegetative
+      - input_boolean.flower
+      - input_boolean.seedling
+      - input_boolean.transition
+      - input_boolean.vegetative
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.duel_fuel_1
+      - input_number.duel_fuel_2
+      - input_number.vitathrive
+      - input_number.massive_bloom
+  - service: input_number.set_value
+    data:
+      value: 8
+    target:
+      entity_id: input_number.rezin
+  - service: input_number.set_value
+    data:
+      value: 6
+    target:
+      entity_id: input_number.liquid_weight
+  mode: single
+- id: '1670614990646'
+  alias: Tag ph 4.0 is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 31ddd4f5-8170-46b3-b745-be0ccad4b1cd
+  condition: []
+  action:
+  - device_id: 5bf2a7255afd289456871b85c108ff66
+    domain: button
+    entity_id: button.cal_4
+    type: press
+  mode: single
+- id: '1670615021737'
+  alias: Tag ph 7.0 is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 7d3ab4b2-400f-4fd0-ae3d-b473944683d6
+  condition: []
+  action:
+  - device_id: 5bf2a7255afd289456871b85c108ff66
+    domain: button
+    entity_id: button.cal_7
+    type: press
+  mode: single
+- id: '1670615044533'
+  alias: Tag ph 10.0 is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: f1ed8668-3174-4991-8b54-7d78bf17b45b
+  condition: []
+  action:
+  - device_id: 5bf2a7255afd289456871b85c108ff66
+    domain: button
+    entity_id: button.cal_10
+    type: press
+  mode: single
+- id: '1672630619655'
+  alias: pH High
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ph
+    above: input_number.ph_setmax
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition:
+  - condition: time
+    before: 00:00:00
+    after: input_datetime.pump_1_next_run
+  - condition: and
+    conditions:
+    - condition: time
+      before: 00:00:00
+      after: input_datetime.pump_2_next_run
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_1
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_1
+  - service: input_datetime.set_datetime
+    data: '{{now() + timedelta(minutes = 20)}}'
+    target:
+      entity_id: input_datetime.pump_1_next_run
+  - service: input_datetime.set_datetime
+    data: '{{now()}}'
+    target:
+      entity_id: input_datetime.pump_1_last_run_run
+  mode: single
+- id: '1672633514033'
+  alias: pH Low
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ph
+    below: input_number.ph_setmin
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition:
+  - condition: time
+    before: 00:00:00
+    after: input_datetime.pump_2_next_run
+  - condition: and
+    conditions:
+    - condition: time
+      before: 00:00:00
+      after: input_datetime.pump_1_next_run
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_2
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_2
+  - service: input_datetime.set_datetime
+    data: '{{now() + timedelta(minutes = 20)}}'
+    target:
+      entity_id: input_datetime.pump_2_next_run_next_run
+  - service: input_datetime.set_datetime
+    data: '{{now()}}'
+    target:
+      entity_id: input_datetime.pump_2_last_run_run
+  mode: single
+- id: '1672669339664'
+  alias: Tent Above Temp
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tent_temperature
+    above: input_number.tenttemp_setmax
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition:
+  - condition: time
+    before: 00:00:00
+    after: input_datetime.pump_1_next_run
+  - condition: and
+    conditions:
+    - condition: time
+      before: 00:00:00
+      after: input_datetime.pump_2_next_run
+  action:
+  - service: input_datetime.set_datetime
+    data: '{{now() + timedelta(minutes = 20)}}'
+    target:
+      entity_id: input_datetime.pump_1_next_run
+  mode: single
+- id: '1672669481830'
+  alias: Dehumidifier Full Notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.dehumidifier_full
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: The Dehumidifier is Full
+      title: Dehumidifier Full
+  mode: single

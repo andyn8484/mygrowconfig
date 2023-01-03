@@ -1,0 +1,116 @@
+trigger_camera_amnesia:
+  alias: Trigger Camera Amnesia
+  sequence:
+  - service: blink.trigger_camera
+    data: {}
+    target:
+      entity_id:
+      - camera.blink_amnesia
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+    data: {}
+  mode: single
+trigger_camera_bubblegum:
+  alias: Trigger Camera Bubblegum
+  sequence:
+  - service: blink.trigger_camera
+    data: {}
+    target:
+      entity_id: camera.blink_bubblegum
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+    data: {}
+  mode: single
+trigger_camera_both:
+  alias: Trigger Camera Both
+  sequence:
+  - service: blink.trigger_camera
+    data: {}
+    target:
+      entity_id: camera.blink_room
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+    data: {}
+  mode: single
+trigger_camera_top:
+  alias: Trigger Camera Top
+  sequence:
+  - service: blink.trigger_camera
+    data: {}
+    target:
+      entity_id: camera.blink_top
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+    data: {}
+  mode: single
+'1672261263184':
+  alias: Turn on Dehumidifier when humidity too high
+  use_blueprint:
+    path: homeassistant/confirmable_notification.yaml
+    input:
+      notify_device: 7fcaaa24b89ed6e43aa155bca480d557
+      title: Humidity too High
+      message: The humidity is {{ states(sensor.tent_humidity)}}, do you want to turn
+        on the dehumidifier?
+      confirm_text: 'Yes'
+      confirm_action:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.shellypro4pm_84cca87fa4f4_3
+      dismiss_action: []
+  mode: single
+dose_5_ml:
+  alias: Dose 5 ml pH Down
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_1
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: '{{ states(''input_number.peristaltic_pump_flow_rate'') | float / 60
+        * 5 }}'
+      milliseconds: 0
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_1
+  mode: single
+  icon: mdi:water-pump
+dose_5_ml_ph_up:
+  alias: Dose 5 ml pH Up
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_2
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: '{{ states(''input_number.peristaltic_pump_flow_rate'') | float / 60
+        * 5}}'
+      milliseconds: 0
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.dosing_pump_2
+  mode: single
+  icon: mdi:water-pump
