@@ -76,11 +76,4 @@ sensor:
     id: startingppm
     entity_id: input_number.water_starting_ppm
   
-  - platform: template
-    name: "TDS Adjusted for Starting PPM"
-    id: tds01_adj
-    icon: "hass:water-opacity"
-    unit_of_measurement: "PPM"
-    accuracy_decimals: 0
-    lambda: return id(tds01_55g)-id(startingppm);
 
