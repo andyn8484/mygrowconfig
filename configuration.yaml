@@ -10,6 +10,7 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
 
+
 homeassistant:
   media_dirs:
     snapshots: /config/www/images/
