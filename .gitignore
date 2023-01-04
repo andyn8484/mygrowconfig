@@ -8,7 +8,7 @@
 !*.sh
 !*.js
 !node-red/
-!www/
+!config/www/floorplan
 !esphome/
 
 # Ignore folders.
