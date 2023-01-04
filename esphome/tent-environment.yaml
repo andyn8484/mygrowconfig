@@ -32,6 +32,12 @@ sensor:
       name: "Tent Temperature"
     humidity:
       name: "Tent Humidity"
+      filters:
+        - calibrate_linear:
+            - 0.0 -> 0.0
+            - 66.0 -> 58.0
+            - 86.0 -> 71.0
+            - 100.0 -> 100.0
     model: AM2302
     update_interval: 60s
 
