@@ -24,3 +24,4 @@ known_devices.yaml
 .ssh
 home-assistant.log*
 id_rsa*
+/local/images/
