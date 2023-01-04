@@ -1,7 +1,16 @@
 - sensors:
-    - name: "vpd in kpa"
+    - name:
+      unique_id:
+      icon:
+      device_class:
+      state_class:
+      state: "{{  }}"
+      unit_of_measurement: "kPa"
+    - name: "Vapor Pressure Deficit"
       unique_id: vapor_pressure_deficit
       icon: mdi:water-opacity
+      device_class: atmospheric_pressure
+      state_class: measurement
       state: >
         {% set T = ((states('sensor.tent_temperature') | float) - 32) * 5/9 %}
         {% set RH = states('sensor.tent_humidity')|float %}
@@ -12,129 +21,167 @@
     - name: "Nutrient Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_1
       icon: mdi:current-ac
+      device_class: current
       unit_of_measurement: "A"
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_1') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_1') | float ) | round(2)  }}"
     - name: "Air Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_2
       icon: mdi:current-ac
+      device_class: current
       unit_of_measurement: "A"
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_2') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_1') | float) | round(2)  }}"
     - name: "Dehumidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_3
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_3') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_3') | float ) | round(2)  }}"
     - name: "Humidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_4
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_4') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_4') | float ) | round(2)  }}"
     - name: "Grow Light Current"
       unique_id: shellypro4pm_884cca87f1ae0_switch01_current_1
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_1') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_1') | float ) | round(2)  }}"
     - name: "Tent Exhaust Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_2
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_2') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_2') | float ) | round(2)  }}"
     - name: "Bottom Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_3
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_3') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_3') | float ) | round(2)  }}"
     - name: "Top Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_4
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      
+      state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_4') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_4') | float ) | round(2)  }}"
     - name: "Total Current"
       unique_id: shellyem_e45229_channel_1_current
       icon: mdi:current-ac
       unit_of_measurement: "A"
+      state_class: measurement
       state: "{{ (states('sensor.shellyem_e45229_channel_1_power') | float / states('sensor.shellyem_e45229_channel_1_voltage') | float ) | round(2)  }}"
     - name: "Weeks Since Sprout"
       unique_id: weeks_since_sprout
       unit_of_measurement: "Weeks"
+      state_class: measurement
       state: "{{ (states('sensor.anniversary_days_since_sprout') | float / 7 ) | round(0, 'floor')  }}"
     - name: "Weeks Since Flower"
       unique_id: weeks_since_flower
       unit_of_measurement: "Weeks"
+      state_class: measurement
       state: "{{ (states('sensor.anniversary_flipped_to_flower') | float / 7 ) | round(0, 'floor')  }}"
     - name: "Weeks Remaining"
       unique_id: weeks_remaining
       unit_of_measurement: "Weeks"
+      state_class: measurement
       state: "{{ 12 - (states('sensor.weeks_since_flower')| float ) | round(0, 'floor')  }}"
     - name: "pH Threshold Max"
       unique_id: ph_setmax
+      state_class: measurement
       state: "{{ states('input_number.ph_target') | float + states('input_number.ph_tolerance') | float }}"
     - name: "pH Threshold Min"
       unique_id: ph_setmin
       state: "{{ states('input_number.ph_target') | float - states('input_number.ph_tolerance') | float }}"
     - name: "Air Temp Threshold Max"
       unique_id: tenttemp_setmax
+      state_class: measurement
       state: "{{ states('input_number.air_temperature_target') | float + states('input_number.air_temperature_tolerance') | float }}"
     - name: "Air Temp Threshold Min"
       unique_id: tenttemp_setmin
+      state_class: measurement
       state: "{{ states('input_number.air_temperature_target') | float - states('input_number.air_temperature_tolerance') | float }}"
     - name: "Humidity Threshold Max"
       unique_id: tenthum_setmax
+      state_class: measurement
       state: "{{ states('input_number.humidity_target') | float + states('input_number.humidity_tolerance') | float }}"
     - name: "Humidity Threshold Min"
       unique_id: tenthum_setmin
       state: "{{ states('input_number.humidity_target') | float - states('input_number.humidity_tolerance') | float }}"
     - name: "Water Temp Threshold Max"
       unique_id: watertemp_setmax
+      state_class: measurement
       state: "{{ states('input_number.water_temperature_target') | float + states('input_number.water_temperature_tolerance') | float }}"
     - name: "Water Temp Threshold Min"
       unique_id: watertemp_setmin
+      state_class: measurement
       state: "{{ states('input_number.water_temperature_target') | float - states('input_number.water_temperature_tolerance') | float }}"
     - name: "Duel Fuel 1 Full Dose"
       unique_id: duel_fuel_1_full_dose
+      state_class: measurement
       state: "{{ states('input_number.duel_fuel_1')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Duel Fuel 2 Full Dose"
       unique_id: duel_fuel_2_full_dose
+      state_class: measurement
       state: "{{ states('input_number.duel_fuel_2')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Vitathrive Full Dose"
       unique_id: vitathrive_full_dose
+      state_class: measurement
       state: "{{ states('input_number.vitathrive')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Rezin Full Dose"
       unique_id: rezin_full_dose
+      state_class: measurement
       state: "{{ states('input_number.rezin')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Massive Bloom Full Dose"
       unique_id: massive_bloom_full_dose
+      state_class: measurement
       state: "{{ states('input_number.massive_bloom')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Liquid Weight Full Dose"
       unique_id: liquid_weight_full_dose
+      state_class: measurement
       state: "{{ states('input_number.liquid_weight')|float * states('input_number.reservoir_volume')|float}}"
       unit_of_measurement: "ml"
     - name: "Duel Fuel 1 Dose Length"
       unique_id: duel_fuel_1_dose_length
+      state_class: measurement
       state: "{{ states('sensor.duel_fuel_1_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
       unit_of_measurement: "seconds"
     - name: "Duel Fuel 2 Dose Length"
       unique_id: duel_fuel_2_dose_length
+      state_class: measurement
       state: "{{ states('sensor.duel_fuel_2_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
       unit_of_measurement: "seconds"
     - name: "Vitathrive Dose Length"
       unique_id: vitathrive_dose_length
+      state_class: measurement
       state: "{{ states('sensor.vitathrive_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
       unit_of_measurement: "seconds"
     - name: "Rezin Dose Length"
       unique_id: rezin_dose_length
+      state_class: measurement
       state: "{{ states('sensor.rezin_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
       unit_of_measurement: "seconds"
     - name: "Massive Bloom Dose Length"
       unique_id: massive_bloom_dose_length
+      state_class: measurement
       state: "{{ states('sensor.massive_bloom_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
       unit_of_measurement: "seconds"
     - name: "Liquid Weight Dose Length"
       unique_id: liquid_weight_dose_length
+      state_class: measurement
       state: "{{ states('sensor.liquid_weight_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
       unit_of_measurement: "seconds"
