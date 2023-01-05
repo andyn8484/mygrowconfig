@@ -8,23 +8,22 @@
     #      state: "{{  }}"
     - name: "Vapor Pressure Deficit"
       unique_id: vapor_pressure_deficit
-      icon: mdi:water-opacity
       device_class: atmospheric_pressure
       state_class: measurement
+      unit_of_measurement: "kPa"
       state: >
         {% set T = ((states('sensor.tent_temperature') | float) - 32) * 5/9 %}
         {% set RH = states('sensor.tent_humidity')|float %}
         {% set SVP = 0.61078 * e ** (17.2694 * T / (T + 238.3)) %}
         {% set VPD = ((100-RH) / 100) * SVP %}
         {{-VPD | round(2) -}}
-      unit_of_measurement: "kPa"
-#    - name: "Nutrient Pump Current"
-#      unique_id: shellypro4pm_84cca87fa4f4_current_1
-#      icon: mdi:current-ac
-#      device_class: current
-#      unit_of_measurement: "A"
-#      state_class: measurement
-#      state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_1') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_1') | float ) | round(2)  }}"
+
+    - name: "Nutrient Pump Current"
+      unique_id: shellypro4pm_84cca87fa4f4_current_1
+      device_class: current
+      state_class: measurement
+      unit_of_measurement: "A"
+      state: "{{ (states('sensor.shellypro4pm_84cca87fa4f4_power_1') | float / states('sensor.shellypro4pm_84cca87fa4f4_voltage_1') | float ) | round(2)  }}"
 #    - name: "Air Pump Current"
 #      unique_id: shellypro4pm_84cca87fa4f4_current_2
 #      icon: mdi:current-ac
