@@ -9,6 +9,7 @@
 
     - name: "Vapor Pressure Deficit"
       unique_id: vapor_pressure_deficit
+      icon: mdi:pressure 
       device_class: atmospheric_pressure
       state_class: measurement
       unit_of_measurement: "kPa"
