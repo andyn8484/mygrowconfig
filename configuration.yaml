@@ -35,7 +35,7 @@ lovelace:
     tent-view:
       mode: yaml
       title: Tent
-      icon: mdi:script
+      icon: mdi:sprout-outline
       show_in_sidebar: true
       filename: Tent.yaml
 
