@@ -101,7 +101,7 @@
       unit_of_measurement: "Weeks"
       state: "{{ 12 - (states('sensor.weeks_since_flower')| float ) | round(0, 'floor')  }}"
 
-    ##################Threshold min/max for controlled variables (pH, Temps, Humidity)      
+    ##################Threshold min/max for controlled variables (pH, Temps, Humidity)
 
     - name: "pH Threshold Max"
       unique_id: ph_setmax
@@ -157,8 +157,7 @@
       unit_of_measurement: "°F"
       state: "{{ states('input_number.water_temperature_target') | float - states('input_number.water_temperature_tolerance') | float }}"
 
-
-######################Nutrient Dosing Full Dose calculations#######################      
+    ######################Nutrient Dosing Full Dose calculations#######################
     - name: "Duel Fuel 1 Full Dose"
       unique_id: duel_fuel_1_full_dose
       state_class: measurement
@@ -201,34 +200,40 @@
       unit_of_measurement: "ml"
       state: "{{ states('input_number.liquid_weight')|float * states('input_number.reservoir_volume')|float}}"
 
+    ###############################Dosing timer calculations##########################
     - name: "Duel Fuel 1 Dose Length"
       unique_id: duel_fuel_1_dose_length
       state_class: measurement
-      state: "{{ states('sensor.duel_fuel_1_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
+      device_class: duration
       unit_of_measurement: "seconds"
+      state: "{{ states('sensor.duel_fuel_1_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
     - name: "Duel Fuel 2 Dose Length"
       unique_id: duel_fuel_2_dose_length
       state_class: measurement
-      state: "{{ states('sensor.duel_fuel_2_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
+      device_class: duration
       unit_of_measurement: "seconds"
+      state: "{{ states('sensor.duel_fuel_2_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Vitathrive Dose Length"
       unique_id: vitathrive_dose_length
       state_class: measurement
-      state: "{{ states('sensor.vitathrive_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
+      device_class: duration
       unit_of_measurement: "seconds"
+      state: "{{ states('sensor.vitathrive_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Rezin Dose Length"
       unique_id: rezin_dose_length
       state_class: measurement
-      state: "{{ states('sensor.rezin_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
+      device_class: duration
       unit_of_measurement: "seconds"
+      state: "{{ states('sensor.rezin_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Massive Bloom Dose Length"
       unique_id: massive_bloom_dose_length
       state_class: measurement
-      state: "{{ states('sensor.massive_bloom_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
+      device_class: duration
       unit_of_measurement: "seconds"
+      state: "{{ states('sensor.massive_bloom_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Liquid Weight Dose Length"
       unique_id: liquid_weight_dose_length
       state_class: measurement
-      state: "{{ states('sensor.liquid_weight_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
+      device_class: duration
       unit_of_measurement: "seconds"
-
+      state: "{{ states('sensor.liquid_weight_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
