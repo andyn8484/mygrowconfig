@@ -29,15 +29,15 @@ influxdb:
 logger:
   default: info
 
-#lovelace:
-#  mode: storage
-#  dashboards:
-#    lovelace-yaml:
-#      mode: yaml
-#      title: Tent
-#      icon: mdi:script
-#      show_in_sidebar: true
-#      filename: Tent.yaml
+lovelace:
+  mode: storage
+  dashboards:
+    Tent:
+      mode: yaml
+      title: Tent
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: Tent.yaml
 
 shell_command:
   pushupdates_to_github: /bin/bash pushupdates.sh
