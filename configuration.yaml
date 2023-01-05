@@ -8,7 +8,7 @@ tts:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-#sensor: !include sensors.yaml
+sensor: !include sensors.yaml
 template: !include template-sensors.yaml
 
 homeassistant:
