@@ -1,189 +1,203 @@
 title: Tent
 views:
   - theme: Google Dark Theme
-    title: Floorplan
+    title: Tent View
     path: Tent
     type: panel
     badges: []
     cards:
-      type: custom:floorplan-card
-      full_height: true
-      config:
-        image:
-          location: /local/floorplan/Tent.svg
-          cache: false
-        stylesheet: /local/floorplan/Tent.css
-        defaults:
-          hover_action: hover-info
-          tap_action: more-info
-        rules:
-          - entities:
-              - input_boolean.early_vegetative
-              - input_boolean.flower
-              - input_boolean.flush
-              - input_boolean.vegetative
-              - input_boolean.seedling
-              - input_boolean.transition
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: switch-${entity.state}
-            tap_action: disabled
-          - entities:
-              - switch.shellypro4pm_84cca87fa4f4_1
-              - switch.shellypro4pm_84cca87fa4f4_3
-              - switch.shellypro4pm_84cca87fa4f4_4
-              - switch.shellypro4pm_84cca87f1ae0_1
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: switch-${entity.state}
-            tap_action: toggle
-          - entities:
-              - switch.shellypro4pm_84cca87fa4f4_2
-              - switch.shellypro4pm_84cca87f1ae0_2
-              - switch.shellypro4pm_84cca87f1ae0_3
-              - switch.shellypro4pm_84cca87f1ae0_4
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: wave-${entity.state}
-            tap_action: toggle
-          - entities:
-              - sensor.tent_temperature
-              - sensor.room_environment_sensor_temperature
-              - sensor.water_temperature
-              - sensor.tds_01
-              - sensor.tent_humidity
-              - sensor.room_environment_sensor_humidity
-              - sensor.ph
-              - sensor.shellypro4pm_84cca87f1ae0_power_1
-              - sensor.shellypro4pm_84cca87f1ae0_power_2
-              - sensor.shellypro4pm_84cca87fa4f4_power_3
-            state_action:
-              - service: floorplan.text_set
-                service_data: >
-                  ${(entity.state !== undefined) ? entity.state +
-                  entity.attributes.unit_of_measurement : "unknown"}
-          - entity: switch.shellypro4pm_84cca87fa4f4_1
-            element: switch.shellypro4pm_84cca87fa4f4_1.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87fa4f4_2
-            element: switch.shellypro4pm_84cca87fa4f4_2.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87fa4f4_3
-            element: switch.shellypro4pm_84cca87fa4f4_3.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87fa4f4_4
-            element: switch.shellypro4pm_84cca87fa4f4_4.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87f1ae0_1
-            element: switch.shellypro4pm_84cca87f1ae0_1.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87f1ae0_2
-            element: switch.shellypro4pm_84cca87f1ae0_2.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87f1ae0_3
-            element: switch.shellypro4pm_84cca87f1ae0_3.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87f1ae0_4
-            element: switch.shellypro4pm_84cca87f1ae0_4.button
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: button-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87fa4f4_1
-            element: switch.shellypro4pm_84cca87fa4f4_1.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87fa4f4_2
-            element: switch.shellypro4pm_84cca87fa4f4_2.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87fa4f4_3
-            element: switch.shellypro4pm_84cca87fa4f4_3.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87fa4f4_4
-            element: switch.shellypro4pm_84cca87fa4f4_4.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87f1ae0_1
-            element: switch.shellypro4pm_84cca87f1ae0_1.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: homeassistant.toggle
-          - entity: switch.shellypro4pm_84cca87f1ae0_2
-            element: switch.shellypro4pm_84cca87f1ae0_2.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87f1ae0_3
-            element: switch.shellypro4pm_84cca87f1ae0_3.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entity: switch.shellypro4pm_84cca87f1ae0_4
-            element: switch.shellypro4pm_84cca87f1ae0_4.border
-            state_action:
-              - action: call-service
-                service: floorplan.class_set
-                service_data: border-${entity.state}
-            tap_action: false
-          - entities:
-              - camera.blink_room
-              - camera.blink_top
-              - camera.blink_tent_2
-              - camera.blink_amnesia
-            state_action:
-              - action: call-service
-                service: floorplan.image_set
-                service_data: ${entity.attributes.entity_picture}
-                image_refresh_interval: 10
+      - type: custom:floorplan-card
+        full_height: true
+        config:
+          image:
+            location: /local/floorplan/Tent.svg
+            cache: true
+          stylesheet: /local/floorplan/Tent.css
+          defaults:
+            hover_action: hover-info
+            tap_action: more-info
+          rules:
+            - entities:
+                - sensor.weeks_remaining
+                - sensor.weeks_since_sprout
+                - sensor.weeks_since_flower
+                - input_datetime.birthday
+              state_action:
+                - action: call-service
+                  service: floorplan.text_set
+                  service_data: ${entity.state}
+            - entities:
+                - input_boolean.early_vegetative
+                - input_boolean.flower
+                - input_boolean.flush
+                - input_boolean.vegetative
+                - input_boolean.seedling
+                - input_boolean.transition
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: switch-${entity.state}
+              tap_action: disabled
+            - entities:
+                - switch.shellypro4pm_84cca87fa4f4_1
+                - switch.shellypro4pm_84cca87fa4f4_3
+                - switch.shellypro4pm_84cca87fa4f4_4
+                - switch.shellypro4pm_84cca87f1ae0_1
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: switch-${entity.state}
+              tap_action: toggle
+            - entities:
+                - switch.shellypro4pm_84cca87fa4f4_2
+                - switch.shellypro4pm_84cca87f1ae0_2
+                - switch.shellypro4pm_84cca87f1ae0_3
+                - switch.shellypro4pm_84cca87f1ae0_4
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: wave-${entity.state}
+              tap_action: toggle
+            - entities:
+                - sensor.tent_temperature
+                - sensor.room_environment_sensor_temperature
+                - sensor.water_temperature
+                - sensor.tds_01
+                - sensor.tent_humidity
+                - sensor.room_environment_sensor_humidity
+                - sensor.ph
+                - sensor.shellypro4pm_84cca87f1ae0_power_1
+                - sensor.shellypro4pm_84cca87f1ae0_power_2
+                - sensor.shellypro4pm_84cca87fa4f4_power_3
+              state_action:
+                - service: floorplan.text_set
+                  service_data: >
+                    ${(entity.state !== undefined) ? entity.state +
+                    entity.attributes.unit_of_measurement : "unknown"}
+            - entity: switch.shellypro4pm_84cca87fa4f4_1
+              element: switch.shellypro4pm_84cca87fa4f4_1.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87fa4f4_2
+              element: switch.shellypro4pm_84cca87fa4f4_2.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87fa4f4_3
+              element: switch.shellypro4pm_84cca87fa4f4_3.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87fa4f4_4
+              element: switch.shellypro4pm_84cca87fa4f4_4.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87f1ae0_1
+              element: switch.shellypro4pm_84cca87f1ae0_1.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87f1ae0_2
+              element: switch.shellypro4pm_84cca87f1ae0_2.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87f1ae0_3
+              element: switch.shellypro4pm_84cca87f1ae0_3.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87f1ae0_4
+              element: switch.shellypro4pm_84cca87f1ae0_4.button
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: button-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87fa4f4_1
+              element: switch.shellypro4pm_84cca87fa4f4_1.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87fa4f4_2
+              element: switch.shellypro4pm_84cca87fa4f4_2.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87fa4f4_3
+              element: switch.shellypro4pm_84cca87fa4f4_3.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87fa4f4_4
+              element: switch.shellypro4pm_84cca87fa4f4_4.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87f1ae0_1
+              element: switch.shellypro4pm_84cca87f1ae0_1.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: homeassistant.toggle
+            - entity: switch.shellypro4pm_84cca87f1ae0_2
+              element: switch.shellypro4pm_84cca87f1ae0_2.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87f1ae0_3
+              element: switch.shellypro4pm_84cca87f1ae0_3.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entity: switch.shellypro4pm_84cca87f1ae0_4
+              element: switch.shellypro4pm_84cca87f1ae0_4.border
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: border-${entity.state}
+              tap_action: false
+            - entities:
+                - camera.blink_room
+                - camera.blink_top
+                - camera.blink_tent_2
+                - camera.blink_amnesia
+              state_action:
+                - action: call-service
+                  service: floorplan.image_set
+                  service_data: ${entity.attributes.entity_picture}
+                  image_refresh_interval: 10
+            - entity: input_boolean.dehumidifier_full
+              state_action:
+                - action: call-service
+                  service: floorplan.class_set
+                  service_data: switch-${entity.state}

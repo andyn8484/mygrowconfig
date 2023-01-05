@@ -32,7 +32,7 @@ logger:
 lovelace:
   mode: storage
   dashboards:
-    Tent:
+    tent-view:
       mode: yaml
       title: Tent
       icon: mdi:script
