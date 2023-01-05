@@ -9,7 +9,6 @@
 
     - name: "Vapor Pressure Deficit"
       unique_id: vapor_pressure_deficit
-      icon: mdi:pressure 
       device_class: atmospheric_pressure
       state_class: measurement
       unit_of_measurement: "kPa"
@@ -24,6 +23,7 @@
 
     - name: "Nutrient Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_1
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
