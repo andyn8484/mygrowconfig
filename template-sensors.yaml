@@ -23,7 +23,7 @@
 
     - name: "Nutrient Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_1
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -31,7 +31,7 @@
 
     - name: "Air Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_2
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -39,7 +39,7 @@
 
     - name: "Dehumidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_3
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -47,7 +47,7 @@
 
     - name: "Humidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_4
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -55,7 +55,7 @@
 
     - name: "Grow Light Current"
       unique_id: shellypro4pm_884cca87f1ae0_switch01_current_1
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -63,7 +63,7 @@
 
     - name: "Tent Exhaust Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_2
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -71,7 +71,7 @@
 
     - name: "Bottom Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_3
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -79,14 +79,14 @@
 
     - name: "Top Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_4
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_4') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_4') | float ) | round(2)  }}"
       unit_of_measurement: "A"
 
     - name: "Total Current"
       unique_id: shellyem_e45229_channel_1_current
-      icon: mdi:current-ac 
+      icon: mdi:current-ac
       state_class: measurement
       state: "{{ (states('sensor.shellyem_e45229_channel_1_power') | float / states('sensor.shellyem_e45229_channel_1_voltage') | float ) | round(2)  }}"
       unit_of_measurement: "A"
@@ -121,12 +121,14 @@
 
     - name: "pH Threshold Min"
       unique_id: ph_setmin
+      icon: mdi:ph
       state_class: measurement
       unit_of_measurement: "pH"
       state: "{{ states('input_number.ph_target') | float - states('input_number.ph_tolerance') | float }}"
 
     - name: "Air Temp Threshold Max"
       unique_id: tenttemp_setmax
+      icon: mdi:thermometer
       state_class: measurement
       device_class: temperature
       unit_of_measurement: "°F"
@@ -134,6 +136,7 @@
 
     - name: "Air Temp Threshold Min"
       unique_id: tenttemp_setmin
+      icon: mdi:thermometer
       state_class: measurement
       device_class: temperature
       unit_of_measurement: "°F"
@@ -141,6 +144,7 @@
 
     - name: "Humidity Threshold Max"
       unique_id: tenthum_setmax
+      icon: mdi:cloud-percent
       state_class: measurement
       device_class: humidity
       unit_of_measurement: "%"
@@ -148,6 +152,7 @@
 
     - name: "Humidity Threshold Min"
       unique_id: tenthum_setmin
+      icon: mdi:cloud-percent
       state_class: measurement
       device_class: humidity
       unit_of_measurement: "%"
@@ -155,6 +160,7 @@
 
     - name: "Water Temp Threshold Max"
       unique_id: watertemp_setmax
+      icon: mdi:thermometer-water
       state_class: measurement
       device_class: temperature
       unit_of_measurement: "°F"
@@ -162,6 +168,7 @@
 
     - name: "Water Temp Threshold Min"
       unique_id: watertemp_setmin
+      icon: mdi:water-thermometer
       state_class: measurement
       device_class: temperature
       unit_of_measurement: "°F"
@@ -170,6 +177,7 @@
     ######################Nutrient Dosing Full Dose calculations#######################
     - name: "Duel Fuel 1 Full Dose"
       unique_id: duel_fuel_1_full_dose
+      icon: mdi:tally-mark-1
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -177,6 +185,7 @@
 
     - name: "Duel Fuel 2 Full Dose"
       unique_id: duel_fuel_2_full_dose
+      icon: mdi:tally-mark-2
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -184,6 +193,7 @@
 
     - name: "Vitathrive Full Dose"
       unique_id: vitathrive_full_dose
+      icon: mdi:tally-mark-3
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -191,6 +201,7 @@
 
     - name: "Rezin Full Dose"
       unique_id: rezin_full_dose
+      icon: mdi:tally-mark-4
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -198,6 +209,7 @@
 
     - name: "Massive Bloom Full Dose"
       unique_id: massive_bloom_full_dose
+      icon: mdi:tally-mark-5
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -205,6 +217,7 @@
 
     - name: "Liquid Weight Full Dose"
       unique_id: liquid_weight_full_dose
+      icon: mdi:tally-mark-6
       state_class: measurement
       device_class: volume
       unit_of_measurement: "ml"
@@ -213,36 +226,42 @@
     ###############################Dosing timer calculations##########################
     - name: "Duel Fuel 1 Dose Length"
       unique_id: duel_fuel_1_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.duel_fuel_1_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
     - name: "Duel Fuel 2 Dose Length"
       unique_id: duel_fuel_2_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.duel_fuel_2_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Vitathrive Dose Length"
       unique_id: vitathrive_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.vitathrive_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Rezin Dose Length"
       unique_id: rezin_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.rezin_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Massive Bloom Dose Length"
       unique_id: massive_bloom_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.massive_bloom_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 )}}"
     - name: "Liquid Weight Dose Length"
       unique_id: liquid_weight_dose_length
+      icon: mdi:timer-alert
       state_class: measurement
       device_class: duration
       unit_of_measurement: "seconds"
