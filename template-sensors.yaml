@@ -31,6 +31,7 @@
 
     - name: "Air Pump Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_2
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -38,6 +39,7 @@
 
     - name: "Dehumidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_3
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -45,6 +47,7 @@
 
     - name: "Humidifier Current"
       unique_id: shellypro4pm_84cca87fa4f4_current_4
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -52,6 +55,7 @@
 
     - name: "Grow Light Current"
       unique_id: shellypro4pm_884cca87f1ae0_switch01_current_1
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -59,6 +63,7 @@
 
     - name: "Tent Exhaust Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_2
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -66,6 +71,7 @@
 
     - name: "Bottom Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_3
+      icon: mdi:current-ac 
       device_class: current
       state_class: measurement
       unit_of_measurement: "A"
@@ -73,12 +79,14 @@
 
     - name: "Top Circulation Fan Current"
       unique_id: shellypro4pm_84cca87f1ae0_current_4
+      icon: mdi:current-ac 
       state_class: measurement
       state: "{{ (states('sensor.shellypro4pm_84cca87f1ae0_power_4') | float / states('sensor.shellypro4pm_84cca87f1ae0_voltage_4') | float ) | round(2)  }}"
       unit_of_measurement: "A"
 
     - name: "Total Current"
       unique_id: shellyem_e45229_channel_1_current
+      icon: mdi:current-ac 
       state_class: measurement
       state: "{{ (states('sensor.shellyem_e45229_channel_1_power') | float / states('sensor.shellyem_e45229_channel_1_voltage') | float ) | round(2)  }}"
       unit_of_measurement: "A"
@@ -106,8 +114,9 @@
 
     - name: "pH Threshold Max"
       unique_id: ph_setmax
+      icon: mdi:ph
       state_class: measurement
-
+      unit_of_measurement: "pH"
       state: "{{ states('input_number.ph_target') | float + states('input_number.ph_tolerance') | float }}"
 
     - name: "pH Threshold Min"
