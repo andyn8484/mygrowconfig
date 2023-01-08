@@ -42,6 +42,6 @@ lovelace:
 shell_command:
   pushupdates_to_github: /bin/bash pushupdates.sh
 
-  frontend:
+frontend:
   extra_module_url:
-    - /local/card-mod.js
+    - /local/community/lovelace-card-mod/card-mod.js
