@@ -551,6 +551,10 @@
     data: '{{now()}}'
     target:
       entity_id: input_datetime.pump_1_last_run_run
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.ph_too_high
   mode: single
 - id: '1672633514033'
   alias: pH Low
@@ -594,6 +598,10 @@
     data: '{{now()}}'
     target:
       entity_id: input_datetime.pump_2_last_run_run
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.ph_too_low
   mode: single
 - id: '1672669339664'
   alias: Tent Above Temp
