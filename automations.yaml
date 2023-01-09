@@ -602,24 +602,11 @@
   - platform: numeric_state
     entity_id: sensor.tent_temperature
     above: input_number.tenttemp_setmax
-    for:
-      hours: 0
-      minutes: 30
-      seconds: 0
-  condition:
-  - condition: time
-    before: 00:00:00
-    after: input_datetime.pump_1_next_run
-  - condition: and
-    conditions:
-    - condition: time
-      before: 00:00:00
-      after: input_datetime.pump_2_next_run
   action:
-  - service: input_datetime.set_datetime
-    data: '{{now() + timedelta(minutes = 20)}}'
+  - service: input_boolean.turn_on
+    data: {}
     target:
-      entity_id: input_datetime.pump_1_next_run
+      entity_id: input_boolean.air_temp_too_high
   mode: single
 - id: '1672669481830'
   alias: Dehumidifier Full Notification
