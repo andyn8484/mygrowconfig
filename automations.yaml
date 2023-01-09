@@ -667,3 +667,29 @@
     target:
       entity_id: input_boolean.air_temp_too_low
   mode: single
+- id: '1673301192904'
+  alias: Humidity Too High
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tent_humidity
+    above: sensor.tenthum_setmax
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.humidity_too_high
+  mode: single
+- id: '1673301263685'
+  alias: Humidity Too Low
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tent_humidity
+    below: sensor.tenthum_setmin
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.humidity_too_low
+  mode: single
