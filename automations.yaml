@@ -693,3 +693,20 @@
     target:
       entity_id: input_boolean.humidity_too_low
   mode: single
+- id: '1673356347765'
+  alias: Tent Temp Return to Normal
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tent_temperature
+    above: sensor.tenttemp_setmax
+    below: sensor.tenttemp_setmin
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.air_temp_too_low
+      - input_boolean.air_temp_too_high
+  mode: single
