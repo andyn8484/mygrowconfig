@@ -1,0 +1,1095 @@
+title: Home
+views:
+  - title: Home
+    theme: Backend-selected
+    path: default_view
+    type: panel
+    icon: mdi:home
+    badges: []
+    cards:
+      - square: true
+        columns: 3
+        type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - square: true
+                columns: 3
+                type: grid
+                cards:
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_1
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_2
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_3
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_4
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_1
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_2
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_3
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_4
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    tap_action:
+                      action: toggle
+                    entity: switch.dehumidifier_pump
+                    name: Dehumidifier Drain Pump
+                    icon: mdi:pump
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.dehumidifier_full', '1') %}
+                              red
+                            {% else %}
+                            
+                            {% endif %}
+                            ;
+                          }
+          - type: vertical-stack
+            cards:
+              - type: grid
+                cards:
+                  - hours_to_show: 24
+                    graph: line
+                    type: sensor
+                    detail: 2
+                    entity: sensor.tent_temperature
+                    name: Air Temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.air_temp_too_high', 'on') %}
+                              red
+                            {% elif is_state('input_boolean.air_temp_too_low', 'on') %}
+                              blue
+                            {% else %}
+                            {% endif %}
+                            ;
+                          }
+                  - hours_to_show: 24
+                    graph: line
+                    type: sensor
+                    entity: sensor.tent_humidity
+                    detail: 2
+                    name: Humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.humidity_too_high', 'on') %}
+                              red
+                            {% elif is_state('input_boolean.humidity_too_low_temp', 'on') %}
+                              blue
+                            {% else %}
+                            {% endif %}
+                            ;
+                          }
+                  - type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.vapor_deficit
+                        aggregate_func: avg
+                        name: Avg
+                        color: orange
+                    name: VPD
+                    hours_to_show: 168
+                    group_by: hour
+                  - hours_to_show: 24
+                    graph: line
+                    type: sensor
+                    entity: sensor.water_temperature
+                    detail: 2
+                    icon: mdi:thermometer-water
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.water_temp_too_high', 'on') %}
+                              red
+                            {% elif is_state('input_boolean.water_temp_too_low', 'on') %}
+                              blue
+                            {% else %}
+                            {% endif %}
+                            ;
+                          }
+                  - type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.tds_adjusted
+                        aggregate_func: avg
+                        name: Avg
+                        color: orange
+                    name: TDS
+                    hours_to_show: 168
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.tds_too_high', 'on') %}
+                              red
+                            {% elif is_state('input_boolean.tds_too_low', 'on') %}
+                              blue
+                            {% else %}
+                            {% endif %}
+                            ;
+                          }
+                  - type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.tds_01_temperature_adjusted_voltage
+                        aggregate_func: avg
+                        name: Avg
+                        color: orange
+                    name: EC
+                    hours_to_show: 168
+                    group_by: hour
+                  - hours_to_show: 24
+                    graph: line
+                    type: sensor
+                    detail: 2
+                    entity: sensor.shellyem_e45229_current
+                  - hours_to_show: 24
+                    graph: line
+                    type: sensor
+                    detail: 2
+                    entity: sensor.ph
+                    name: pH
+                    icon: mdi:ph
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.ph_too_high', 'on') %}
+                              red
+                            {% elif is_state('input_boolean.ph_too_low', 'on') %}
+                              blue
+                            {% else %}
+                            {% endif %}
+                            ;
+                          }
+          - type: vertical-stack
+            cards:
+              - show_name: true
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.weeks_since_sprout
+                  - entity: sensor.anniversary_days_since_sprout
+                  - entity: sensor.anniversary_flipped_to_flower
+                  - entity: sensor.weeks_since_flower
+                title: Schedule
+              - show_name: false
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.room_environment_sensor_temperature
+                  - entity: sensor.room_environment_sensor_humidity
+                  - entity: sensor.room_environment_sensor_battery
+                title: Room Sensor
+                columns: 3
+              - show_name: false
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.tent_environment_secondary_sensor_temperature
+                  - entity: sensor.tent_environment_secondary_sensor_humidity
+                  - entity: sensor.tent_environment_secondary_sensor_battery
+                title: Tent Secondary
+                columns: 3
+  - title: Mobile
+    theme: Backend-selected
+    path: mobile
+    icon: mdi:cellphone
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - square: true
+                columns: 3
+                type: grid
+                cards:
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_1
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_2
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_3
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_4
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_1
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87f1ae0_2
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_3
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    action: toggle
+                    entity: switch.shellypro4pm_84cca87fa4f4_4
+                  - show_name: true
+                    show_icon: true
+                    type: button
+                    tap_action:
+                      action: toggle
+                    entity: switch.dehumidifier_pump
+                    icon: mdi:pump
+                    card_mod:
+                      style: |
+                        ha-card {
+                          color: 
+                            {% if is_state('input_boolean.dehumidifier_full', '1') %}
+                              red
+                            {% else %}
+                                
+                            {% endif %}
+                            ;
+                          }
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.forecast_home
+            name: Weather Forecast
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 2
+                entity: sensor.tent_temperature
+                name: Air Temperature
+                card_mod:
+                  style: |
+                    ha-card {
+                      color: 
+                        {% if is_state('input_boolean.air_temp_too_high', 'on') %}
+                          red
+                        {% elif is_state('input_boolean.air_temp_too_low', 'on') %}
+                          blue
+                        {% else %}
+                        {% endif %}
+                        ;
+                      }
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                entity: sensor.tent_humidity
+                detail: 2
+                name: Humidity
+                card_mod:
+                  style: |
+                    ha-card {
+                      color: 
+                        {% if is_state('input_boolean.humidity_too_high', 'on') %}
+                          red
+                        {% elif is_state('input_boolean.humidity_too_low_temp', 'on') %}
+                          blue
+                        {% else %}
+                        {% endif %}
+                        ;
+                      }
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.vapor_deficit
+                    aggregate_func: avg
+                    name: Avg
+                    color: orange
+                name: VPD
+                hours_to_show: 168
+                group_by: hour
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                entity: sensor.water_temperature
+                detail: 2
+                icon: mdi:thermometer-water
+                card_mod:
+                  style: |
+                    ha-card {
+                      color: 
+                        {% if is_state('input_boolean.water_temp_too_high', 'on') %}
+                          red
+                        {% elif is_state('input_boolean.water_temp_too_low', 'on') %}
+                          blue
+                        {% else %}
+                        {% endif %}
+                        ;
+                      }
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 2
+                entity: sensor.tds_adjusted
+                name: TDS
+                card_mod:
+                  style: |
+                    ha-card {
+                      color: 
+                        {% if is_state('input_boolean.tds_too_high', 'on') %}
+                          red
+                        {% elif is_state('input_boolean.tds_too_low', 'on') %}
+                          blue
+                        {% else %}
+                        {% endif %}
+                        ;
+                      }
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 1
+                entity: sensor.tds_01_temperature_adjusted_voltage
+                name: EC
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 2
+                entity: sensor.shellyem_e45229_current
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 1
+                entity: sensor.ph
+                icon: mdi:ph
+                name: pH
+                card_mod:
+                  style: |
+                    ha-card {
+                      color: 
+                        {% if is_state('input_boolean.ph_too_high', 'on') %}
+                          red
+                        {% elif is_state('input_boolean.ph_too_low', 'on') %}
+                          blue
+                        {% else %}
+                        {% endif %}
+                        ;
+                      }
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - show_name: true
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.weeks_since_sprout
+                  - entity: sensor.anniversary_days_since_sprout
+                  - entity: sensor.anniversary_flipped_to_flower
+                title: Schedule
+              - show_name: false
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.room_environment_sensor_temperature
+                  - entity: sensor.room_environment_sensor_humidity
+                  - entity: sensor.room_environment_sensor_battery
+                title: Room Sensor
+                columns: 3
+              - show_name: false
+                show_icon: true
+                show_state: true
+                type: glance
+                entities:
+                  - entity: sensor.tent_environment_secondary_sensor_temperature
+                  - entity: sensor.tent_environment_secondary_sensor_humidity
+                  - entity: sensor.tent_environment_secondary_sensor_battery
+                title: Tent Secondary
+                columns: 3
+  - title: Cameras
+    theme: Backend-selected
+    path: cameras
+    icon: mdi:cctv
+    badges: []
+    cards:
+      - show_state: false
+        show_name: true
+        camera_view: auto
+        type: picture-entity
+        entity: camera.blink_amnesia
+        name: Amnesia
+        camera_image: camera.blink_amnesia
+      - show_state: false
+        show_name: true
+        camera_view: live
+        type: picture-entity
+        entity: camera.blink_bubblegum
+        name: Bubblegum
+        camera_image: camera.blink_bubblegum
+      - show_state: false
+        show_name: true
+        camera_view: live
+        type: picture-entity
+        entity: camera.blink_room
+        name: Both Plants
+        camera_image: camera.blink_room
+      - show_state: false
+        show_name: true
+        camera_view: live
+        type: picture-entity
+        entity: camera.blink_top
+        name: Top
+        camera_image: camera.blink_top
+  - title: Environment
+    theme: Backend-selected
+    path: environment
+    icon: mdi:air-filter
+    type: panel
+    badges: []
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:vpdchart-card
+            title: Tent
+            crop: Cannabis
+            air_rh: sensor.tent_environment_secondary_sensor_humidity
+            air_temp: sensor.tent_environment_secondary_sensor_temperature
+            leaf_temp: sensor.tent_environment_secondary_sensor_temperature
+            leaf_temp_offset: -2
+          - type: entities
+            entities:
+              - entity: sensor.tent_temperature
+              - entity: input_number.air_temperature_target
+              - entity: input_number.air_temperature_tolerance
+              - entity: sensor.tent_humidity
+              - entity: input_number.humidity_target
+              - entity: input_number.humidity_tolerance
+            title: Tent Environment Setpoints
+          - type: entities
+            entities:
+              - entity: switch.shellypro4pm_84cca87fa4f4_2
+              - entity: switch.shellypro4pm_84cca87f1ae0_3
+              - entity: switch.shellypro4pm_84cca87fa4f4_3
+              - entity: switch.dehumidifier_pump
+              - entity: switch.shellypro4pm_84cca87f1ae0_1
+              - entity: switch.shellypro4pm_84cca87fa4f4_4
+              - entity: switch.light_2
+              - entity: switch.shellypro4pm_84cca87fa4f4_1
+              - entity: switch.shellypro4pm_84cca87f1ae0_2
+              - entity: switch.shellypro4pm_84cca87f1ae0_4
+            title: Equipment Control
+  - title: Feed Program
+    theme: Backend-selected
+    path: feed-program
+    icon: mdi:sprout
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - input_select.growth_stage
+      - type: entities
+        entities:
+          - entity: sensor.weeks_since_sprout
+          - entity: sensor.weeks_since_flower
+      - type: horizontal-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.cal_4
+            name: pH 4.0 Calibration
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.cal_7
+            name: pH 7.0 Calibration
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.cal_10
+            name: pH 10.0 Calibration
+            show_state: false
+      - type: entities
+        entities:
+          - entity: input_number.duel_fuel_1
+          - entity: input_number.duel_fuel_2
+          - entity: input_number.vitathrive
+          - entity: input_number.rezin
+          - entity: input_number.massive_bloom
+          - entity: input_number.liquid_weight
+        title: Nutrient Program Dosing
+      - type: entities
+        entities:
+          - entity: input_number.reservoir_volume
+          - entity: input_number.water_starting_ppm
+          - entity: input_number.water_temperature_tolerance
+          - entity: sensor.tds_01
+          - entity: input_number.fertilization_target
+          - entity: input_number.fertilization_tolerance
+          - entity: sensor.ph
+          - entity: input_number.ph_target
+          - entity: input_number.ph_tolerance
+          - entity: sensor.water_temperature
+          - entity: input_number.water_temperature_target
+        title: Water Parameters
+      - type: entities
+        entities:
+          - entity: sensor.duel_fuel_1_full_dose
+          - entity: sensor.duel_fuel_1_dose_length
+          - entity: sensor.duel_fuel_2_full_dose
+          - entity: sensor.duel_fuel_2_dose_length
+          - entity: sensor.vitathrive_full_dose
+          - entity: sensor.vitathrive_dose_length
+          - entity: sensor.rezin_full_dose
+          - entity: sensor.rezin_dose_length
+          - entity: sensor.massive_bloom_full_dose
+          - entity: sensor.massive_bloom_dose_length
+          - entity: sensor.liquid_weight_full_dose
+          - entity: sensor.liquid_weight_dose_length
+        title: Fertizilation Full Dose
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.ph
+            name: Current pH
+          - type: entity
+            entity: input_number.ph_target
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: script.dose_5_ml
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: script.dose_5_ml_ph_up
+  - title: Equipment Monitoring
+    theme: Backend-selected
+    path: equipment
+    icon: mdi:devices
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87fa4f4_2
+          - entity: sensor.shellypro4pm_84cca87fa4f4_current_2
+          - entity: sensor.shellypro4pm_84cca87fa4f4_energy_2
+          - entity: sensor.shellypro4pm_84cca87fa4f4_power_2
+          - entity: sensor.shellypro4pm_84cca87fa4f4_voltage_2
+        title: Air Pump
+        state_color: true
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87f1ae0_3
+          - entity: sensor.shellypro4pm_84cca87f1ae0_current_3
+          - entity: sensor.shellypro4pm_84cca87f1ae0_energy_3
+          - entity: sensor.shellypro4pm_84cca87f1ae0_power_3
+          - entity: sensor.shellypro4pm_84cca87f1ae0_voltage_3
+        title: Bottom Circulation Fan
+        state_color: true
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87fa4f4_3
+          - entity: sensor.shellypro4pm_84cca87fa4f4_current_3
+          - entity: sensor.shellypro4pm_84cca87fa4f4_energy_3
+          - entity: sensor.shellypro4pm_84cca87fa4f4_power_3
+          - entity: sensor.shellypro4pm_84cca87fa4f4_voltage_3
+        title: Dehumidifier
+        state_color: true
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87f1ae0_2
+          - entity: sensor.shellypro4pm_84cca87f1ae0_current_2
+          - entity: sensor.shellypro4pm_84cca87f1ae0_energy_2
+          - entity: sensor.shellypro4pm_84cca87f1ae0_power_2
+          - entity: sensor.shellypro4pm_84cca87f1ae0_voltage_2
+        state_color: true
+        title: Tent Exhaust Fan
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87f1ae0_1
+          - entity: sensor.shellypro4pm_84cca87f1ae0_current_1
+          - entity: sensor.shellypro4pm_84cca87f1ae0_energy_1
+          - entity: sensor.shellypro4pm_84cca87f1ae0_power_1
+          - entity: sensor.shellypro4pm_84cca87f1ae0_voltage_1
+        state_color: true
+        title: Grow Light
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87fa4f4_4
+          - entity: sensor.shellypro4pm_84cca87fa4f4_current_4
+          - entity: sensor.shellypro4pm_84cca87fa4f4_energy_4
+          - entity: sensor.shellypro4pm_84cca87fa4f4_power_4
+          - entity: sensor.shellypro4pm_84cca87fa4f4_voltage_4
+        state_color: true
+        title: Humidifier
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87fa4f4_1
+          - entity: sensor.shellypro4pm_84cca87fa4f4_current_1
+          - entity: sensor.shellypro4pm_84cca87fa4f4_energy_1
+          - entity: sensor.shellypro4pm_84cca87fa4f4_power_1
+          - entity: sensor.shellypro4pm_84cca87fa4f4_voltage_1
+        state_color: true
+        title: Nutrient Pump
+      - type: entities
+        entities:
+          - entity: switch.shellypro4pm_84cca87f1ae0_4
+          - entity: sensor.shellypro4pm_84cca87f1ae0_current_4
+          - entity: sensor.shellypro4pm_84cca87f1ae0_energy_4
+          - entity: sensor.shellypro4pm_84cca87f1ae0_power_4
+          - entity: sensor.shellypro4pm_84cca87f1ae0_voltage_4
+        state_color: true
+        title: Top Circulation Fan
+      - type: history-graph
+        entities:
+          - entity: switch.shellypro4pm_84cca87fa4f4_2
+          - entity: switch.shellypro4pm_84cca87f1ae0_3
+          - entity: switch.shellypro4pm_84cca87fa4f4_3
+          - entity: switch.shellypro4pm_84cca87f1ae0_1
+          - entity: switch.shellypro4pm_84cca87fa4f4_4
+          - entity: switch.shellypro4pm_84cca87fa4f4_1
+          - entity: switch.shellypro4pm_84cca87f1ae0_2
+          - entity: switch.shellypro4pm_84cca87f1ae0_4
+          - entity: switch.dosing_pump_1
+          - entity: switch.dosing_pump_2
+      - type: custom:scheduler-card
+        include:
+          - switch.light_2
+          - switch.shellypro4pm_84cca87f1ae0_1
+          - switch.shellypro4pm_84cca87f1ae0_switch_1
+        exclude: []
+  - title: Graphs
+    theme: Backend-selected
+    path: graphs
+    icon: mdi:chart-areaspline
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - chart_type: line
+            type: statistics-graph
+            period: week
+            days_to_show: 30
+            entities:
+              - sensor.tent_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            title: Air Temperature
+          - type: horizontal-stack
+            title: Daily
+            cards:
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Weekly
+            cards:
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Monthly
+            cards:
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: min
+                name: Min
+      - type: vertical-stack
+        cards:
+          - chart_type: line
+            type: statistics-graph
+            period: week
+            days_to_show: 30
+            entities:
+              - sensor.tent_humidity
+            stat_types:
+              - mean
+              - min
+              - max
+            title: Humidity
+          - type: horizontal-stack
+            title: Daily
+            cards:
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: day
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: day
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: day
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Weekly
+            cards:
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: week
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: week
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: week
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Monthly
+            cards:
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: month
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: month
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.tent_humidity
+                period:
+                  calendar:
+                    period: month
+                stat_type: min
+                name: Min
+      - type: vertical-stack
+        cards:
+          - chart_type: line
+            type: statistics-graph
+            period: week
+            days_to_show: 30
+            entities:
+              - sensor.water_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            title: Water Temperature
+          - type: horizontal-stack
+            title: Daily
+            cards:
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: day
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Weekly
+            cards:
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: week
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Monthly
+            cards:
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: mean
+                name: Average
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.water_temperature
+                period:
+                  calendar:
+                    period: month
+                stat_type: min
+                name: Min
+      - type: vertical-stack
+        cards:
+          - chart_type: line
+            period: day
+            days_to_show: 30
+            type: statistics-graph
+            entities:
+              - sensor.shellyem_e45229_channel_1_energy
+            title: Energy Usage
+            stat_types:
+              - change
+          - type: horizontal-stack
+            title: Daily
+            cards:
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_energy
+                period:
+                  calendar:
+                    period: day
+                stat_type: change
+                name: Daily
+              - type: statistic
+                period:
+                  calendar:
+                    period: day
+                stat_type: max
+                entity: sensor.shellyem_e45229_channel_1_power
+                name: Max
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_power
+                period:
+                  calendar:
+                    period: day
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Weekly
+            cards:
+              - type: statistic
+                period:
+                  calendar:
+                    period: week
+                stat_type: change
+                entity: sensor.shellyem_e45229_channel_1_energy
+                name: Total
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_power
+                period:
+                  calendar:
+                    period: week
+                stat_type: max
+                name: Max
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_power
+                period:
+                  calendar:
+                    period: week
+                stat_type: min
+                name: Min
+          - type: horizontal-stack
+            title: Monthly
+            cards:
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_energy
+                period:
+                  calendar:
+                    period: month
+                stat_type: change
+                name: Total
+              - type: statistic
+                entity: sensor.shellyem_e45229_channel_1_power
+                period:
+                  calendar:
+                    period: month
+                stat_type: max
+                name: Max
+              - type: statistic
+                period:
+                  calendar:
+                    period: month
+                stat_type: min
+                entity: sensor.shellyem_e45229_channel_1_power
+                name: Min
+  - title: HA System Monitoring
+    theme: Backend-selected
+    icon: mdi:swap-vertical
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: binary_sensor.exos_router_wan_status
+          - entity: sensor.exos_router_kib_s_sent
+          - entity: sensor.exos_router_kib_s_received
+          - entity: sensor.disk_use
+          - entity: sensor.disk_free
+          - entity: sensor.ipv4_address_enp1s0
+          - entity: sensor.load_1m
+          - entity: sensor.load_5m
+          - entity: sensor.load_15m
+          - entity: sensor.memory_use_percent
+          - entity: sensor.network_in_enp1s0
+          - entity: sensor.network_out_enp1s0
+          - entity: sensor.network_throughput_in_enp1s0
+          - entity: sensor.network_throughput_out_enp1s0
+          - entity: sensor.swap_use_percent
+  - title: Grafana
+    theme: Backend-selected
+    path: grafana
+    icon: mdi:chart-areaspline-variant
+    type: panel
+    badges: []
+    cards:
+      - type: iframe
+        url: >-
+          https://y98kh3cycmmtctmz4phjcifjvvs0o2ya.ui.nabu.casa/api/hassio_ingress/2Pbsh55yqR2pdGk9Fccsp6XCmuHCNcWC8Id4G_PtTok/d/bV1vsot4k/room-environment?orgId=1&from=1672331603814&to=1672936403814&theme=dark
+        aspect_ratio: 50%
+        title: Grafana Dashboard
