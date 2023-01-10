@@ -488,10 +488,11 @@ views:
         name: Top
         camera_image: camera.blink_top
   - title: Environment
+    background: radial-gradient(lightgray, black)
     theme: Backend-selected
     path: environment
     icon: mdi:air-filter
-    type: panel
+    panel: true
     badges: []
     cards:
       - type: horizontal-stack
