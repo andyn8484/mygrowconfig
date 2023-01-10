@@ -699,8 +699,8 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.tent_temperature
-    above: sensor.tenttemp_setmax
-    below: sensor.tenttemp_setmin
+    above: sensor.tenttemp_setmin
+    below: sensor.tenttemp_setmax
   condition: []
   action:
   - service: input_boolean.turn_off
@@ -709,4 +709,21 @@
       entity_id:
       - input_boolean.air_temp_too_low
       - input_boolean.air_temp_too_high
+  mode: single
+- id: '1673356935081'
+  alias: Humidity Return to Normal
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tent_humidity
+    above: sensor.tenthum_setmin
+    below: sensor.tenthum_setmax
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.humidity_too_high
+      - input_boolean.humidity_too_low
   mode: single
