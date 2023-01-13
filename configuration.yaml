@@ -49,6 +49,4 @@ frontend:
 
 timer:
   dosetimer:
-    duration: >
-      {% set s = states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5|int %}  
-      {{ '%02d:%02d:%02d' % ((s/3600)|int, (s%3600/60))}
+    duration: {{ '%02d:%02d:%05.2f' % ((states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5|float %/3600)|int, (states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5|float %%3600/60), states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5|float % | float)}}
