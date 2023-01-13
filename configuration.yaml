@@ -48,6 +48,5 @@ frontend:
     - /local/community/lovelace-card-mod/card-mod.js
 
 timer:
-  5mL_dose:
-    duration: 
-      seconds: {{ states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5}}
+  dosetimer:
+    duration: "{{states('input_number.peristaltic_pump_flow_rate') | int / 60 * 5 | int}}"
