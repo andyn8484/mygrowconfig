@@ -49,4 +49,5 @@ frontend:
 
 timer:
   5mL_dose:
-    duration: " 00:00:'{{ states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5}}':
+    duration: 
+      seconds: {{ states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5}}
