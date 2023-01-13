@@ -266,3 +266,8 @@
       device_class: duration
       unit_of_measurement: "seconds"
       state: "{{ states('sensor.liquid_weight_full_dose')|float / (states('input_number.peristaltic_pump_flow_rate')|float / 60 ) }}"
+    - name: "Flow Rate in Hours:Minutes:Seconds"
+      unique_id: flowrateformatted
+      state: >
+        {% set s = states('input_number.peristaltic_pump_flow_rate') | float / 60 * 5|float %}  
+        '%02d:%02d:%05.2f' % ((s/3600)|int, (s%3600/60), s | float)
