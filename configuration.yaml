@@ -46,3 +46,17 @@ frontend:
   themes: !include_dir_merge_named themes
   extra_module_url:
     - /local/community/lovelace-card-mod/card-mod.js
+#Enable Cameras
+camera:
+  - platform: generic
+    name: rear
+      still_image_url: !secret Camera_URL
+      stream_source: !secret CameraRear_Source 
+                         
+  - platform: generic
+    name: side
+    still_image_url: !secret Camera_URL
+                                               stream_source: !secret CameraSide_Source 
+                                                
+                                                 #Enable stream
+                                                  stream:
