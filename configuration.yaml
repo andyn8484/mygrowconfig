@@ -50,13 +50,13 @@ frontend:
 camera:
   - platform: generic
     name: rear
-      still_image_url: !secret Camera_URL
-      stream_source: !secret CameraRear_Source 
+    still_image_url: !secret Camera_URL
+    stream_source: !secret CameraRear_Source 
                          
   - platform: generic
     name: side
     still_image_url: !secret Camera_URL
-                                               stream_source: !secret CameraSide_Source 
+    stream_source: !secret CameraSide_Source 
                                                 
-                                                 #Enable stream
-                                                  stream:
+#Enable stream
+stream:
