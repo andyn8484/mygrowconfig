@@ -727,3 +727,20 @@
       - input_boolean.humidity_too_high
       - input_boolean.humidity_too_low
   mode: single
+- id: '1673831059493'
+  alias: Tent Back Right Every 30 Minutes
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /30
+  condition:
+  - condition: time
+    before: '20:00:00'
+    after: 08:00:00
+    enabled: false
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.tent_back_right_main
+      filename: /config/www/images/Tent_Back_Right/tent_back_right_{{now().year}}-{{now().month}}-{{now().day}}_{{now().hour}}.{{now().minute}}.jpg
+  mode: single
