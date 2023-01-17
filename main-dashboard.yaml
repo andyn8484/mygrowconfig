@@ -529,66 +529,62 @@ cards:
                 align-self: center;
               }
       - type: custom:config-template-card
-        variables:
-          tolerance: states['input_number.ph_tolerance'].state
-          target: states['input_number.ph_target'].state
-        entities:
-          - input_number.fertilization_tolerance
-          - input_number.fertilization_targetname: Power
-        animate: true
-        entities:
-          - entity: sensor.shellyem_e45229_current
-        type: custom:mini-graph-card
-        hours_to_show: 24
-        graph: line
-        points_per_hour: 4
-        show:
-          fill: fade
-          extrema: true
-          legend: false
-          points: false
-        color_thresholds:
-          - value: 15
-            color: red
-          - value: 10
-            color: orange
-          - value: 0
-            color: green
-        color_thresholds_transition: smooth
-        height: 200
-        lower_bound: 0
-        card_mod:
-          style: |
-            ha-card {
-            --ha-card-background: opacity: .2;
-            }
+        card:
+          name: Power
+          animate: true
+          entities:
+            - entity: sensor.shellyem_e45229_current
+          type: custom:mini-graph-card
+          hours_to_show: 24
+          graph: line
+          points_per_hour: 4
+          show:
+            fill: fade
+            extrema: true
+            legend: false
+            points: false
+          color_thresholds:
+            - value: 15
+              color: red
+            - value: 10
+              color: orange
+            - value: 0
+              color: green
+          color_thresholds_transition: smooth
+          height: 200
+          lower_bound: 0
+          card_mod:
+            style: |
+              ha-card {
+              --ha-card-background: opacity: .2;
+              }
 
-            .header.flex .name.flex {
-              font-size: 10px;
-            }
+              .header.flex .name.flex {
+                font-size: 10px;
+              }
 
-            .info.flex .info__item .info__item__time {
-              display: none;
-            }
+              .info.flex .info__item .info__item__time {
+                display: none;
+              }
 
-            .info.flex .info__item .info__item__type {
-              font-size: 8px;
-            }
+              .info.flex .info__item .info__item__type {
+                font-size: 8px;
+              }
 
-            .info.flex .info__item .info__item__value {
-              font-size: 12px;
-            }      
-            .graph .graph__container .graph__container__svg svg g mask .line {
-              animation-duration: 5s !important;
-              animation-delay: 0s !important;
-              animation-timing-function: linear !important;
-              animation-iteration-count: infinite !important;
-            }
+              .info.flex .info__item .info__item__value {
+                font-size: 12px;
+              }      
+              .graph .graph__container .graph__container__svg svg g mask .line {
+                animation-duration: 5s !important;
+                animation-delay: 0s !important;
+                animation-timing-function: linear !important;
+                animation-iteration-count: infinite !important;
+              }
 
-            .states.flex .state .state__uom.ellipsis {
-              font-size: 12px;
-              align-self: center;
-            }
+              .states.flex .state .state__uom.ellipsis {
+                font-size: 12px;
+                align-self: center;
+              }
       - name: pH
         animate: true
         entities:
