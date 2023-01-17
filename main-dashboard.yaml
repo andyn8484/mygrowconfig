@@ -530,8 +530,8 @@ cards:
               }
       - type: custom:config-template-card
         variables:
-          tolerance: states['input_number.fertilization_tolerance'].state
-          target: states['input_number.fertilization_target'].state
+          tolerance: states['input_number.ph_tolerance'].state
+          target: states['input_number.ph_target'].state
         entities:
           - input_number.fertilization_tolerance
           - input_number.fertilization_targetname: Power
